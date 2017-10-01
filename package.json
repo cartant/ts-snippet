@@ -1,0 +1,45 @@
+{
+  "author": "Nicholas Jamieson <nicholas@cartant.com>",
+  "bugs": {
+    "url": "https://github.com/cartant/ts-snippet/issues"
+  },
+  "dependencies": {},
+  "description": "A TypeScript snippet testing library for any test framework",
+  "devDependencies": {
+    "@types/chai": "^4.0.0",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.0",
+    "chai": "^4.0.0",
+    "cpy-cli": "^1.0.1",
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.2.0",
+    "rimraf": "^2.6.1",
+    "ts-mocha": "^1.0.3",
+    "tslint": "^5.5.0",
+    "typescript": "^2.5.2 <2.6.0"
+  },
+  "homepage": "https://github.com/cartant/ts-snippet",
+  "keywords": [
+  ],
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "name": "ts-snippet",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "typescript": "^2.0.0"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cartant/ts-snippet.git"
+  },
+  "scripts": {
+    "dist": "npm run dist:clean && npm run dist:build && npm run dist:copy",
+    "dist:build": "tsc -p tsconfig-dist.json",
+    "dist:clean": "rimraf dist",
+    "dist:copy": "node scripts/pack.js && cpy CHANGELOG.md LICENSE README.md dist/",
+    "test": "ts-mocha -p ./ ./source/*-spec.ts"
+  },
+  "typings": "./dist/index.d.ts",
+  "version": "0.0.0"
+}
