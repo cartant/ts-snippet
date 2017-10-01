@@ -5,3 +5,4 @@
 [![dependency status](https://img.shields.io/david/cartant/ts-snippet.svg)](https://david-dm.org/cartant/ts-snippet)
 [![devDependency Status](https://img.shields.io/david/dev/cartant/ts-snippet.svg)](https://david-dm.org/cartant/ts-snippet#info=devDependencies)
 [![peerDependency Status](https://img.shields.io/david/peer/cartant/ts-snippet.svg)](https://david-dm.org/cartant/ts-snippet#info=peerDependencies)
+[![Greenkeeper badge](https://badges.greenkeeper.io/cartant/ts-snippet.svg)](https://greenkeeper.io/)
