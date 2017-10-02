@@ -75,6 +75,7 @@ import * as tape from "tape";
 import { snippet } from "ts-snippet/tape";
 
 tape("should infer Observable<number>", (t) => {
+  t.plan(1);
   const s = snippet(t, {
     "snippet.ts": `
       import * as Rx from "rxjs";
