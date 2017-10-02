@@ -25,7 +25,11 @@ npm install ts-snippet --save-dev
 
 ## Usage
 
-...
+The package exports a `snippet` function that returns a `Snippet` instance, upon which assertions/expectations can be made.
+
+The `snippet` function takes an object containing one or more files - with the keys representing the file names and the values the file content (as strings). The function also takes an optional `Compiler` instance - if not specified, a `Compiler` instance is created within the `snippet` call. With snippets that import large packages (such as RxJS) re-using the compiler can effect significant performance gains.
+
+Using Mocha, the tests look something like this:
 
 ```ts
 import { Compiler, snippet } from "ts-snippet";
@@ -59,6 +63,8 @@ describe("snippets", () => {
   });
 });
 ```
+
+If the BDD-style expectations are not to your liking, there are alternate methods that are more terse.
 
 ## API
 
