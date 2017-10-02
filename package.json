@@ -22,7 +22,12 @@
     "typescript": "^2.5.2 <2.6.0"
   },
   "homepage": "https://github.com/cartant/ts-snippet",
-  "keywords": [],
+  "keywords": [
+    "snippet",
+    "test",
+    "testing",
+    "typescript"
+  ],
   "license": "MIT",
   "main": "./dist/index.js",
   "name": "ts-snippet",
