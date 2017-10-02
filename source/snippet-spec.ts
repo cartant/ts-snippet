@@ -50,7 +50,7 @@ describe("Snippet", () => {
 
     describe("snippet", () => {
 
-        describe("error", () => {
+        describe("fail", () => {
 
             it("should not throw if an error occurs", () => {
 
@@ -58,7 +58,7 @@ describe("Snippet", () => {
                     "a.ts": "let a: string = 1;"
                 });
 
-                expect(() => snip.error("a.ts")).to.not.throw();
+                expect(() => snip.fail("a.ts")).to.not.throw();
             });
 
             it("should not throw if a matching error occurs", () => {
@@ -67,7 +67,7 @@ describe("Snippet", () => {
                     "a.ts": "let a: string = 1;"
                 });
 
-                expect(() => snip.error("a.ts", /is not assignable to type 'string'/)).to.not.throw();
+                expect(() => snip.fail("a.ts", /is not assignable to type 'string'/)).to.not.throw();
             });
 
             it("should throw if a non-matching error occurs", () => {
@@ -76,7 +76,7 @@ describe("Snippet", () => {
                     "a.ts": "let a: string = 1;"
                 });
 
-                expect(() => snip.error("a.ts", /is not assignable to type 'number'/)).to.throw();
+                expect(() => snip.fail("a.ts", /is not assignable to type 'number'/)).to.throw();
             });
 
             it("should throw if no error occurs", () => {
@@ -85,13 +85,13 @@ describe("Snippet", () => {
                     "a.ts": "let a: number = 1;"
                 });
 
-                expect(() => snip.error("a.ts")).to.throw();
+                expect(() => snip.fail("a.ts")).to.throw();
             });
         });
 
         describe("expect", () => {
 
-            describe("toHaveError", () => {
+            describe("toFail", () => {
 
                 it("should not throw if an error occurs", () => {
 
@@ -99,7 +99,7 @@ describe("Snippet", () => {
                         "a.ts": "let a: string = 1;"
                     });
 
-                    expect(() => snip.expect("a.ts").toHaveError()).to.not.throw();
+                    expect(() => snip.expect("a.ts").toFail()).to.not.throw();
                 });
 
                 it("should not throw if a matching error occurs", () => {
@@ -108,7 +108,7 @@ describe("Snippet", () => {
                         "a.ts": "let a: string = 1;"
                     });
 
-                    expect(() => snip.expect("a.ts").toHaveError(/is not assignable to type 'string'/)).to.not.throw();
+                    expect(() => snip.expect("a.ts").toFail(/is not assignable to type 'string'/)).to.not.throw();
                 });
 
                 it("should throw if a non-matching error occurs", () => {
@@ -117,7 +117,7 @@ describe("Snippet", () => {
                         "a.ts": "let a: string = 1;"
                     });
 
-                    expect(() => snip.expect("a.ts").toHaveError(/is not assignable to type 'number'/)).to.throw();
+                    expect(() => snip.expect("a.ts").toFail(/is not assignable to type 'number'/)).to.throw();
                 });
 
                 it("should throw if no error occurs", () => {
@@ -126,11 +126,11 @@ describe("Snippet", () => {
                         "a.ts": "let a: number = 1;"
                     });
 
-                    expect(() => snip.expect("a.ts").toHaveError()).to.throw();
+                    expect(() => snip.expect("a.ts").toFail()).to.throw();
                 });
             });
 
-            describe("toInferType", () => {
+            describe("toInfer", () => {
 
                 let snip: Snippet;
 
@@ -144,20 +144,41 @@ describe("Snippet", () => {
 
                 it("should throw if a variable is not found", () => {
 
-                    expect(() => snip.expect("a.ts").toInferType("x", "number")).to.throw(/variable x not found/i);
-                    expect(() => snip.expect("b.ts").toInferType("x", "number")).to.throw(/variable x not found/i);
+                    expect(() => snip.expect("a.ts").toInfer("x", "number")).to.throw(/variable 'x' not found/i);
+                    expect(() => snip.expect("b.ts").toInfer("x", "number")).to.throw(/variable 'x' not found/i);
                 });
 
                 it("should throw if a variable has an unexpected type", () => {
 
-                    expect(() => snip.expect("a.ts").toInferType("a", "string")).to.throw(/expected a: number to be string/i);
-                    expect(() => snip.expect("b.ts").toInferType("b", "string")).to.throw(/expected b: number to be string/i);
+                    expect(() => snip.expect("a.ts").toInfer("a", "string")).to.throw(/expected 'a: number' to be 'string'/i);
+                    expect(() => snip.expect("b.ts").toInfer("b", "string")).to.throw(/expected 'b: number' to be 'string'/i);
                 });
 
                 it("should not throw if a variable has the expected type", () => {
 
-                    expect(() => snip.expect("a.ts").toInferType("a", "number")).to.not.throw();
-                    expect(() => snip.expect("b.ts").toInferType("b", "number")).to.not.throw();
+                    expect(() => snip.expect("a.ts").toInfer("a", "number")).to.not.throw();
+                    expect(() => snip.expect("b.ts").toInfer("b", "number")).to.not.throw();
+                });
+            });
+
+            describe("toSucceed", () => {
+
+                it("should not throw if no error occurs", () => {
+
+                    const snip = snippet({
+                        "a.ts": "let a: number = 1;"
+                    });
+
+                    expect(() => snip.expect("a.ts").toSucceed()).to.not.throw();
+                });
+
+                it("should throw if an error occurs", () => {
+
+                    const snip = snippet({
+                        "a.ts": "let a: string = 1;"
+                    });
+
+                    expect(() => snip.expect("a.ts").toSucceed()).to.throw();
                 });
             });
         });
@@ -176,20 +197,41 @@ describe("Snippet", () => {
 
             it("should throw if a variable is not found", () => {
 
-                expect(() => snip.infer("a.ts", "x", "number")).to.throw(/variable x not found/i);
-                expect(() => snip.infer("b.ts", "x", "number")).to.throw(/variable x not found/i);
+                expect(() => snip.infer("a.ts", "x", "number")).to.throw(/variable 'x' not found/i);
+                expect(() => snip.infer("b.ts", "x", "number")).to.throw(/variable 'x' not found/i);
             });
 
             it("should throw if a variable has an unexpected type", () => {
 
-                expect(() => snip.infer("a.ts", "a", "string")).to.throw(/expected a: number to be string/i);
-                expect(() => snip.infer("b.ts", "b", "string")).to.throw(/expected b: number to be string/i);
+                expect(() => snip.infer("a.ts", "a", "string")).to.throw(/expected 'a: number' to be 'string'/i);
+                expect(() => snip.infer("b.ts", "b", "string")).to.throw(/expected 'b: number' to be 'string'/i);
             });
 
             it("should not throw if a variable has the expected type", () => {
 
                 expect(() => snip.infer("a.ts", "a", "number")).to.not.throw();
                 expect(() => snip.infer("b.ts", "b", "number")).to.not.throw();
+            });
+        });
+
+        describe("succeed", () => {
+
+            it("should not throw if no error occurs", () => {
+
+                const snip = snippet({
+                    "a.ts": "let a: number = 1;"
+                });
+
+                expect(() => snip.succeed("a.ts")).to.not.throw();
+            });
+
+            it("should throw if an error occurs", () => {
+
+                const snip = snippet({
+                    "a.ts": "let a: string = 1;"
+                });
+
+                expect(() => snip.succeed("a.ts")).to.throw();
             });
         });
     });

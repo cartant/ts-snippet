@@ -21,9 +21,9 @@ export class Snippet {
         this._program = _compiler.compile(_files);
     }
 
-    error(fileName: string, expectedMessage?: RegExp): void {
+    fail(fileName: string, expectedMessage?: RegExp): void {
 
-        const diagnostics = this._compiler.getDiagnostics(fileName);
+        const diagnostics = this._getDiagnostics(fileName);
         const messages = diagnostics.map(this._compiler.formatDiagnostic);
         const matched = messages.some((message) => expectedMessage ? expectedMessage.test(message) : true);
         if (!matched) {
@@ -33,7 +33,11 @@ export class Snippet {
 
     expect(fileName: string): Expect {
 
-        return new Expect(this.error.bind(this, fileName), this.infer.bind(this, fileName));
+        return new Expect(
+            this.fail.bind(this, fileName),
+            this.infer.bind(this, fileName),
+            this.succeed.bind(this, fileName)
+        );
     }
 
     infer(fileName: string, variableName: string, expectedType: string): void {
@@ -42,11 +46,25 @@ export class Snippet {
         const variables = getVariables(this._program, sourceFile);
         const actualType = variables[variableName];
         if (!actualType) {
-            throw new Error(`Variable ${variableName} not found`);
+            throw new Error(`Variable '${variableName}' not found`);
         }
         if (!areEquivalentTypeStrings(expectedType, actualType)) {
-            throw new Error(`Expected ${variableName}: ${actualType} to be ${expectedType}`);
+            throw new Error(`Expected '${variableName}: ${actualType}' to be '${expectedType}'`);
         }
+    }
+
+    succeed(fileName: string): void {
+
+        const diagnostics = this._getDiagnostics(fileName);
+        if (diagnostics.length) {
+            const [diagnostic] = diagnostics;
+            throw new Error(this._compiler.formatDiagnostic(diagnostic));
+        }
+    }
+
+    private _getDiagnostics(fileName: string): ts.Diagnostic[] {
+
+        return this._program.getSemanticDiagnostics().concat(this._compiler.getDiagnostics(fileName));
     }
 }
 

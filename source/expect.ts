@@ -7,7 +7,8 @@
 export class Expect {
 
     constructor(
-        public toHaveError: (expectedMessage?: RegExp) => void,
-        public toInferType: (variableName: string, expectedType: string) => void
+        public toFail: (expectedMessage?: RegExp) => void,
+        public toInfer: (variableName: string, expectedType: string) => void,
+        public toSucceed: () => void
     ) {}
 }
