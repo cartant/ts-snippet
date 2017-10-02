@@ -28,7 +28,7 @@ npm install ts-snippet --save-dev
 ...
 
 ```ts
-it("should infer the correct type", () => {
+it("should infer Observable<number>", () => {
   const s = snippet({
     "snippet.ts": `
       import * as Rx from "rxjs";
@@ -42,7 +42,7 @@ it("should infer the correct type", () => {
 ...
 
 ```ts
-it("should be incompatible with Observable<number>", () => {
+it("should be not be assignable to Observable<number>", () => {
   const s = snippet({
     "snippet.ts": `
       import * as Rx from "rxjs";
