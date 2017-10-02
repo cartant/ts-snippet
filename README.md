@@ -28,32 +28,37 @@ npm install ts-snippet --save-dev
 ...
 
 ```ts
-it("should infer Observable<number>", () => {
-  const s = snippet({
-    "snippet.ts": `
-      import * as Rx from "rxjs";
-      let ob = Rx.Observable.from([0, 1]);
-    `
+import { Compiler, snippet } from "ts-snippet";
+
+describe("snippets", () => {
+
+  let compiler: Compiler;
+
+  before(() => {
+    compiler = new Compiler();
   });
-  s.expect("snippet.ts").toInfer("ob", "Observable<number>");
+
+  it("should infer Observable<number>", () => {
+    const s = snippet({
+      "snippet.ts": `
+        import * as Rx from "rxjs";
+        let ob = Rx.Observable.from([0, 1]);
+      `
+    }, compiler);
+    s.expect("snippet.ts").toInfer("ob", "Observable<number>");
+  });
+
+  it("should be not be assignable to Observable<number>", () => {
+    const s = snippet({
+      "snippet.ts": `
+        import * as Rx from "rxjs";
+        let ob: Rx.Observable<number> = Rx.Observable.from([0, "1"]);
+      `
+    }, compiler);
+    s.expect("snippet.ts").toFail(/is not assignable to type 'Observable<number>'/);
+  });
 });
 ```
-
-...
-
-```ts
-it("should be not be assignable to Observable<number>", () => {
-  const s = snippet({
-    "snippet.ts": `
-      import * as Rx from "rxjs";
-      let ob: Rx.Observable<number> = Rx.Observable.from([0, "1"]);
-    `
-  });
-  s.expect("snippet.ts").toFail(/is not assignable to type 'Observable<number>'/);
-});
-```
-
-...
 
 ## API
 
