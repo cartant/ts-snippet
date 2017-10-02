@@ -22,8 +22,7 @@
     "typescript": "^2.5.2 <2.6.0"
   },
   "homepage": "https://github.com/cartant/ts-snippet",
-  "keywords": [
-  ],
+  "keywords": [],
   "license": "MIT",
   "main": "./dist/index.js",
   "name": "ts-snippet",
@@ -45,5 +44,5 @@
     "test": "npm run lint && mocha -r ts-node/register ./source/*-spec.ts"
   },
   "typings": "./dist/index.d.ts",
-  "version": "0.0.0"
+  "version": "1.0.0"
 }
