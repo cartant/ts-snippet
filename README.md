@@ -21,6 +21,8 @@ Without using `ts-snippet`, it's simple to write tests that establish whether or
 
 `ts-snippet` includes assertions that will verify whether inferred types are what's expected and whether compilation fails for incompatible types.
 
+If you need to peform similar assertions, you might find `ts-snippet` useful.
+
 ## Install
 
 Install the package using npm:
