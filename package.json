@@ -14,7 +14,7 @@
     "mkdirp": "^0.5.1",
     "mocha": "^3.2.0",
     "rimraf": "^2.6.1",
-    "ts-mocha": "^1.0.3",
+    "ts-node": "^3.3.0",
     "tslint": "^5.5.0",
     "typescript": "^2.5.2 <2.6.0"
   },
@@ -38,7 +38,8 @@
     "dist:build": "tsc -p tsconfig-dist.json",
     "dist:clean": "rimraf dist",
     "dist:copy": "node scripts/pack.js && cpy CHANGELOG.md LICENSE README.md dist/",
-    "test": "ts-mocha -p ./ ./source/*-spec.ts"
+    "lint": "tslint --project tsconfig.json --type-check source/**/*.ts",
+    "test": "mocha -r ts-node/register ./source/*-spec.ts"
   },
   "typings": "./dist/index.d.ts",
   "version": "0.0.0"
