@@ -13,7 +13,13 @@
 
 ### Why might you need it?
 
-...
+I created the `ts-snippet` package out of the need to test overloaded TypeScript functions that have many overload signatures.
+
+The order in which overload signatures are specified is critical and the most specific overloads need to be placed first - as TypeScript will match the first compatible overload signature.
+
+Without using `ts-snippet`, it's simple to write tests that establish whether or not TypeScript code compiles, but it's more difficult to write tests that establish whether type inferences are correct (especially when `any` is involved) or whether types are intentionally incompatible (and generate compilation errors).
+
+`ts-snippet` inludes assertions that will verify whether inferred types are what's expected and whether compilation fails for incompatible types.
 
 ## Install
 
@@ -25,7 +31,7 @@ npm install ts-snippet --save-dev
 
 ## Usage
 
-The package exports a `snippet` function that returns a `Snippet` instance, upon which assertions/expectations can be made.
+The package exports a `snippet` function that returns a `Snippet` instance, upon which assertions can be made.
 
 The `snippet` function takes an object containing one or more files - with the keys representing the file names and the values the file content (as strings). The function also takes an optional `Compiler` instance - if not specified, a `Compiler` instance is created within the `snippet` call. With snippets that import large packages (such as RxJS) re-using the compiler can effect significant performance gains.
 
@@ -66,7 +72,7 @@ describe("snippets", () => {
 
 If the BDD-style expectations are not to your liking, there are alternate methods that are more terse.
 
-When using `ts-snippet` with AVA or tape, the import should specify the specific subdirectory so that the appropriate assertions are configured and the assertions/expectations count towards the test runner's plan.
+When using `ts-snippet` with AVA or tape, the import should specify the specific subdirectory so that the appropriate assertions are configured and the assertions count towards the test runner's plan.
 
 Using the tape-specfic import and terse assertions, tests would look something like this:
 
