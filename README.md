@@ -19,7 +19,7 @@ The order in which overload signatures are specified is critical and the most sp
 
 Without using `ts-snippet`, it's simple to write tests that establish whether or not TypeScript code compiles, but it's more difficult to write tests that establish whether type inferences are correct (especially when `any` is involved) or whether types are intentionally incompatible (and generate compilation errors).
 
-`ts-snippet` inludes assertions that will verify whether inferred types are what's expected and whether compilation fails for incompatible types.
+`ts-snippet` includes assertions that will verify whether inferred types are what's expected and whether compilation fails for incompatible types.
 
 ## Install
 
@@ -74,7 +74,7 @@ If the BDD-style expectations are not to your liking, there are alternate method
 
 When using `ts-snippet` with AVA or tape, the import should specify the specific subdirectory so that the appropriate assertions are configured and the assertions count towards the test runner's plan.
 
-Using the tape-specfic import and terse assertions, tests would look something like this:
+Using the tape-specific import and terse assertions, tests would look something like this:
 
 ```ts
 import * as tape from "tape";
