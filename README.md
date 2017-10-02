@@ -96,4 +96,26 @@ tape("should infer Observable<number>", (t) => {
 
 ## API
 
-...
+```ts
+function snippet(
+  files: { [fileName: string]: string },
+  compiler?: Compiler
+): Snippet;
+```
+
+```ts
+interface Snippet {
+  fail(fileName: string, expectedMessage?: RegExp): void;
+  expect(fileName: string): Expect;
+  infer(fileName: string, variableName: string, expectedType: string): void;
+  succeed(fileName: string): void;
+}
+```
+
+```ts
+interface Expect {
+  toFail(expectedMessage?: RegExp): void;
+  toInfer(variableName: string, expectedType: string): void;
+  toSucceed(): void;
+}
+```
