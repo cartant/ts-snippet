@@ -4,6 +4,7 @@
  * found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
 
+import * as tape from "tape";
 import { Compiler } from "../compiler";
 import { snippet as _snippet, Snippet } from "../snippet";
 
@@ -11,7 +12,7 @@ export { Compiler };
 export { Expect } from "../expect";
 
 export function snippet(
-    context: any,
+    context: tape.Test,
     files: { [fileName: string]: string },
     compiler?: Compiler
 ): Snippet {
