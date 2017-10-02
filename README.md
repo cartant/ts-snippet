@@ -66,6 +66,25 @@ describe("snippets", () => {
 
 If the BDD-style expectations are not to your liking, there are alternate methods that are more terse.
 
+When using `ts-snippet` with AVA or tape, the import should specify the specific subdirectory so that the appropriate assertions are configured and the assertions/expectations count towards the test runner's plan.
+
+Using the tape-specfic import and terse assertions, tests would look something like this:
+
+```ts
+import * as tape from "tape";
+import { snippet } from "ts-snippet/tape";
+
+tape("should infer Observable<number>", (t) => {
+  const s = snippet(t, {
+    "snippet.ts": `
+      import * as Rx from "rxjs";
+      let ob = Rx.Observable.from([0, 1]);
+    `
+  });
+  s.infer("snippet.ts", "ob", "Observable<number>");
+});
+```
+
 ## API
 
 ...

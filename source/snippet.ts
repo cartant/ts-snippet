@@ -13,6 +13,9 @@ export class Snippet {
 
     private _program: ts.Program;
 
+    public assertFail: (message: string) => void = (message: string) => { throw new Error(message); };
+    public assertPass: () => void = () => {};
+
     constructor(
         private _files: { [fileName: string]: string },
         private _compiler: Compiler
@@ -27,7 +30,9 @@ export class Snippet {
         const messages = diagnostics.map(this._compiler.formatDiagnostic);
         const matched = messages.some((message) => expectedMessage ? expectedMessage.test(message) : true);
         if (!matched) {
-            throw new Error(expectedMessage ? `Expected an error matching ${expectedMessage}` : "Expected an error");
+            this.assertFail(expectedMessage ? `Expected an error matching ${expectedMessage}` : "Expected an error");
+        } else {
+            this.assertPass();
         }
     }
 
@@ -46,10 +51,11 @@ export class Snippet {
         const variables = getVariables(this._program, sourceFile);
         const actualType = variables[variableName];
         if (!actualType) {
-            throw new Error(`Variable '${variableName}' not found`);
-        }
-        if (!areEquivalentTypeStrings(expectedType, actualType)) {
-            throw new Error(`Expected '${variableName}: ${actualType}' to be '${expectedType}'`);
+            this.assertFail(`Variable '${variableName}' not found`);
+        } else if (!areEquivalentTypeStrings(expectedType, actualType)) {
+            this.assertFail(`Expected '${variableName}: ${actualType}' to be '${expectedType}'`);
+        } else {
+            this.assertPass();
         }
     }
 
@@ -58,7 +64,9 @@ export class Snippet {
         const diagnostics = this._getDiagnostics(fileName);
         if (diagnostics.length) {
             const [diagnostic] = diagnostics;
-            throw new Error(this._compiler.formatDiagnostic(diagnostic));
+            this.assertFail(this._compiler.formatDiagnostic(diagnostic));
+        } else {
+            this.assertPass();
         }
     }
 
