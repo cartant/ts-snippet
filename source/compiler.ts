@@ -17,7 +17,7 @@ export class Compiler {
 
     constructor(compilerOptions?: ts.CompilerOptions) {
 
-        this._compilerOptions = { skipLibCheck: true, ...compilerOptions } as any;
+        this._compilerOptions = /* TS 2.0 */Object.assign({ skipLibCheck: true }, compilerOptions);
         this._files = {};
 
         const languageServiceHost: ts.LanguageServiceHost = {

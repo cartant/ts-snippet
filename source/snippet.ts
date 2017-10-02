@@ -79,7 +79,7 @@ export function getVariables(program: ts.Program, sourceFile: ts.SourceFile): { 
     const typeChecker = program.getTypeChecker();
     const variables: { [name: string]: string } = {};
 
-    sourceFile.forEachChild((node) => {
+    /* TS 2.0 */ts.forEachChild(sourceFile, (node) => {
         if (tsutils.isVariableStatement(node)) {
             tsutils.forEachDeclaredVariable(node.declarationList, (node) => {
                 variables[node.name.getText()] = typeChecker.typeToString(typeChecker.getTypeAtLocation(node));

@@ -40,7 +40,7 @@ export function forEachDestructuringIdentifier<T>(
         if (element.name.kind === ts.SyntaxKind.Identifier) {
             result = fn(<ts.BindingElement & { name: ts.Identifier }>element);
         } else {
-            result = forEachDestructuringIdentifier(element.name, fn);
+            result = forEachDestructuringIdentifier(element.name as any/* TS 2.0 */, fn);
         }
         if (result)
             return result;
@@ -56,7 +56,7 @@ export function forEachDeclaredVariable<T>(
         if (declaration.name.kind === ts.SyntaxKind.Identifier) {
             result = cb(<ts.VariableDeclaration & { name: ts.Identifier }>declaration);
         } else {
-            result = forEachDestructuringIdentifier(declaration.name, cb);
+            result = forEachDestructuringIdentifier(declaration.name as any/* TS 2.0 */, cb);
         }
         if (result)
             return result;
