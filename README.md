@@ -9,7 +9,9 @@
 
 ### What is it?
 
-`ts-snippet` is a TypeScript snippet testing library for any test framework.
+`ts-snippet` is a TypeScript snippet compiler for any test framework.
+
+It does not run the compiled snippets. Instead, it provides assertion methods that can be used to test the compiled TypeScript program.
 
 ### Why might you need it?
 
@@ -19,7 +21,7 @@ The order in which overload signatures are specified is critical and the most sp
 
 Without using `ts-snippet`, it's simple to write tests that establish whether or not TypeScript code compiles, but it's more difficult to write tests that establish whether type inferences are correct (especially when `any` is involved) or whether types are intentionally incompatible (and generate compilation errors).
 
-`ts-snippet` includes assertions that will verify whether inferred types are what's expected and whether compilation fails for incompatible types.
+`ts-snippet` includes assertions that will verify whether inferred types are what's expected and whether compilation succeeds or fails.
 
 If you need to peform similar assertions, you might find `ts-snippet` useful.
 
