@@ -42,7 +42,7 @@ Using Mocha, the tests look something like this:
 ```ts
 import { Compiler, snippet } from "ts-snippet";
 
-describe("snippets", () => {
+describe("publish", () => {
 
   let compiler: Compiler;
 
@@ -50,24 +50,26 @@ describe("snippets", () => {
     compiler = new Compiler();
   });
 
-  it("should infer Observable<number>", () => {
+  it("should infer the source's type", () => {
     const s = snippet({
       "snippet.ts": `
         import * as Rx from "rxjs";
-        let ob = Rx.Observable.from([0, 1]);
+        let source = Rx.Observable.of(1);
+        let published = source.publish();
       `
     }, compiler);
-    s.expect("snippet.ts").toInfer("ob", "Observable<number>");
+    s.expect("snippet.ts").toInfer("published", "Observable<number>");
   });
 
-  it("should be not be assignable to Observable<number>", () => {
+  it("should infer the selected type", () => {
     const s = snippet({
       "snippet.ts": `
         import * as Rx from "rxjs";
-        let ob: Rx.Observable<number> = Rx.Observable.from([0, "1"]);
+        let source = Rx.Observable.of(1);
+        let published = source.publish(s => s.map(x => x.toString()));
       `
     }, compiler);
-    s.expect("snippet.ts").toFail(/is not assignable to type 'Observable<number>'/);
+    s.expect("snippet.ts").toInfer("published", "Observable<string>");
   });
 });
 ```
