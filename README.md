@@ -11,7 +11,7 @@
 
 `ts-snippet` is a TypeScript snippet compiler for any test framework.
 
-It does not run the compiled snippets. Instead, it provides assertion methods that can be used to test the compiled TypeScript program.
+It does not run the compiled snippets. Instead, it provides assertion methods that can be used to test the TypeScript programs compiled from the snippets.
 
 ### Why might you need it?
 
