@@ -49,6 +49,8 @@ describe("Compiler", () => {
 
         it("should support recompiling snippets", () => {
 
+            console.time("1");
+
             const compiler = new Compiler();
             let program = compiler.compile({
                 "snippet.ts": `
@@ -60,6 +62,9 @@ describe("Compiler", () => {
             expect(program.getSourceFile("snippet.ts")).to.be.an("object");
             expect(compiler.getDiagnostics("snippet.ts")).to.not.be.empty;
 
+            console.timeEnd("1");
+            console.time("2");
+
             program = compiler.compile({
                 "snippet.ts": `
                     const pi: number = 3.14159265359;
@@ -69,6 +74,8 @@ describe("Compiler", () => {
             expect(program).to.be.an("object");
             expect(program.getSourceFile("snippet.ts")).to.be.an("object");
             expect(compiler.getDiagnostics("snippet.ts")).to.be.empty;
+
+            console.timeEnd("2");
         });
     });
 });
