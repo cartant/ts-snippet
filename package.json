@@ -19,7 +19,7 @@
     "tape": "^4.7.0",
     "ts-node": "^3.3.0",
     "tslint": "^5.5.0",
-    "typescript": "~2.5.2"
+    "typescript": "~2.6.1"
   },
   "homepage": "https://github.com/cartant/ts-snippet",
   "keywords": [
