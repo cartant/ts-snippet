@@ -98,6 +98,8 @@ tape("should infer Observable<number>", (t) => {
 });
 ```
 
+For an example of how `ts-snippet` can be used, have a look at [these tests](https://github.com/cartant/ts-action/blob/master/source/research-spec.ts) in `ts-action`.
+
 ## API
 
 ```ts
