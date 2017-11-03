@@ -6,6 +6,7 @@
 /*tslint:disable:no-unused-expression*/
 
 import { expect } from "chai";
+import * as ts from "typescript";
 import { Compiler } from "./compiler";
 
 describe("Compiler", () => {
@@ -76,6 +77,20 @@ describe("Compiler", () => {
             expect(compiler.getDiagnostics("snippet.ts")).to.be.empty;
 
             console.timeEnd("2");
+        });
+
+        it("should support options", () => {
+
+            const compiler = new Compiler({ target: ts.ScriptTarget.ES2015 });
+            const program = compiler.compile({
+                "snippet.ts": `
+                    const person = Object.assign({}, { name: "alice" });
+                `
+            });
+
+            expect(program).to.be.an("object");
+            expect(program.getSourceFile("snippet.ts")).to.be.an("object");
+            expect(compiler.getDiagnostics("snippet.ts")).to.be.empty;
         });
     });
 });
