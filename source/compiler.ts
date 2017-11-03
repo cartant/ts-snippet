@@ -15,9 +15,22 @@ export class Compiler {
     private _files: ts.MapLike<{ content: string, version: number }>;
     private _languageService: ts.LanguageService;
 
-    constructor(compilerOptions?: ts.CompilerOptions) {
+    constructor(compilerOptions?: object) {
 
-        this._compilerOptions = /* TS 2.0 */Object.assign({ skipLibCheck: true }, compilerOptions);
+        function normalize(path: string): string {
+            return path.replace(/\\/g, "/");
+        }
+
+        const { errors, options } = ts.convertCompilerOptionsFromJson(
+            /* TS 2.0 */Object.assign({ skipLibCheck: true }, compilerOptions || {}),
+            normalize(process.cwd())
+        );
+        const [error] = errors;
+        if (error) {
+            throw error;
+        }
+
+        this._compilerOptions = options;
         this._files = {};
 
         const languageServiceHost: ts.LanguageServiceHost = {
@@ -25,7 +38,7 @@ export class Compiler {
             directoryExists: ts.sys.directoryExists,
             fileExists: ts.sys.fileExists,
             getCompilationSettings: () => this._compilerOptions,
-            getCurrentDirectory: () => process.cwd(),
+            getCurrentDirectory: () => normalize(process.cwd()),
             getDefaultLibFileName: (options: ts.CompilerOptions) => ts.getDefaultLibFilePath(options),
             getScriptFileNames: () => Object.keys(this._files),
 

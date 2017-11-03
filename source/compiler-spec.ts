@@ -6,7 +6,6 @@
 /*tslint:disable:no-unused-expression*/
 
 import { expect } from "chai";
-import * as ts from "typescript";
 import { Compiler } from "./compiler";
 
 describe("Compiler", () => {
@@ -81,7 +80,7 @@ describe("Compiler", () => {
 
         it("should support options", () => {
 
-            const compiler = new Compiler({ target: ts.ScriptTarget.ES2015 });
+            const compiler = new Compiler({ moduleResolution: "node", target: "es2015" });
             const program = compiler.compile({
                 "snippet.ts": `
                     const person = Object.assign({}, { name: "alice" });
