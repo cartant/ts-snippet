@@ -25,6 +25,8 @@ Without using `ts-snippet`, it's simple to write tests that establish whether or
 
 If you need to peform similar assertions, you might find `ts-snippet` useful.
 
+For an example of how `ts-snippet` can be used to write tests, checkout the [`research-spec.ts`](https://github.com/cartant/ts-action/blob/v2.0.2/source/research-spec.ts) file in my `ts-action` repo.
+
 ## Install
 
 Install the package using npm:
