@@ -45,7 +45,7 @@
     "dist:build": "tsc -p tsconfig-dist.json",
     "dist:clean": "rimraf dist",
     "dist:copy": "node scripts/pack.js && cpy CHANGELOG.md LICENSE README.md dist/",
-    "lint": "tslint --project tsconfig.json --type-check source/**/*.ts",
+    "lint": "tslint --project tsconfig.json source/**/*.ts",
     "test": "yarn run lint && mocha -r ts-node/register ./source/*-spec.ts"
   },
   "typings": "./dist/index.d.ts",
