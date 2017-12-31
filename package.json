@@ -48,6 +48,6 @@
     "lint": "tslint --project tsconfig.json source/**/*.ts",
     "test": "yarn run lint && mocha -r ts-node/register ./source/*-spec.ts"
   },
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
   "version": "2.0.0"
 }
