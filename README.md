@@ -1,5 +1,6 @@
 # ts-snippet
 
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/cartant/ts-snippet/blob/master/LICENSE)
 [![NPM version](https://img.shields.io/npm/v/ts-snippet.svg)](https://www.npmjs.com/package/ts-snippet)
 [![Build status](https://img.shields.io/travis/cartant/ts-snippet.svg)](http://travis-ci.org/cartant/ts-snippet)
 [![dependency status](https://img.shields.io/david/cartant/ts-snippet.svg)](https://david-dm.org/cartant/ts-snippet)
