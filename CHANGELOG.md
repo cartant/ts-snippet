@@ -3,7 +3,7 @@
 
 ### Fixes
 
-* The `indef` expectation now supports variables in nested scopes. ([fa054bd](https://github.com/cartant/ts-snippet/commit/fa054bd))
+* The `infer` expectation now supports variables in nested scopes. ([fa054bd](https://github.com/cartant/ts-snippet/commit/fa054bd))
 
 ### Changes
 
