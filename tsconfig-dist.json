@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "noEmit": false,
-    "outDir": "dist"
+    "noEmit": false
   },
   "exclude": [
     "source/**/*-spec.ts"
