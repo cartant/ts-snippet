@@ -33,7 +33,7 @@ describe("Snippet", () => {
                 "snippet.ts": `
                     let a = 1;
                     let b = "two";
-                    let c = [0];
+                    let c = [3];
                 `
             });
             const sourceFile = program.getSourceFile("snippet.ts");
@@ -43,6 +43,30 @@ describe("Snippet", () => {
                 a: "number",
                 b: "string",
                 c: "number[]"
+            });
+        });
+
+        it("should also get nested variables", () => {
+
+            const compiler = new Compiler();
+            const program = compiler.compile({
+                "snippet.ts": `
+                    let a = 1;
+                    let b = "two";
+                    let c = [3];
+                    if (true) {
+                        let d = "four";
+                    }
+                `
+            });
+            const sourceFile = program.getSourceFile("snippet.ts");
+            const variables = getVariables(program, sourceFile);
+
+            expect(variables).to.deep.equal({
+                a: "number",
+                b: "string",
+                c: "number[]",
+                d: "string"
             });
         });
     });
