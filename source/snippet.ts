@@ -46,7 +46,7 @@ export class Snippet {
 
     infer(fileName: string, variableName: string, expectedType: string): void {
 
-        const sourceFile = this._program.getSourceFile(fileName);
+        const sourceFile = this._program.getSourceFile(fileName)!;
         const variables = getVariables(this._program, sourceFile);
         const actualType = variables[variableName];
         if (!actualType) {
