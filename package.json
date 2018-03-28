@@ -19,7 +19,7 @@
     "tape": "^4.7.0",
     "ts-node": "^5.0.0",
     "tslint": "^5.5.0",
-    "typescript": "~2.7.1"
+    "typescript": "~2.8.1"
   },
   "es2015": "./dist/esm2015/index.js",
   "homepage": "https://github.com/cartant/ts-snippet",
