@@ -5,36 +5,25 @@ It can be used with [AVA](https://github.com/avajs/ava), [Jasmine](https://githu
 Using Jasmine or Mocha, the tests look something like this:
 
 ```ts
-import { Compiler, snippet } from "ts-snippet";
+import { reuseCompiler } from "ts-snippet";
 
-describe("publish", () => {
+describe("observables", () => {
 
-  let compiler: Compiler;
-
-  before(() => {
-    compiler = new Compiler();
-  });
+  const expectSnippet = reuseCompiler();
 
   it("should infer the source's type", () => {
-    const s = snippet({
-      "snippet.ts": `
-        import * as Rx from "rxjs";
-        let source = Rx.Observable.of(1);
-        let published = source.publish();
-      `
-    }, compiler);
-    s.expect("snippet.ts").toInfer("published", "Observable<number>");
+    expectSnippet(`
+      import * as Rx from "rxjs";
+      const source = Rx.Observable.of(1);
+    `).toInfer("source", "Observable<number>");
   });
 
-  it("should infer the selected type", () => {
-    const s = snippet({
-      "snippet.ts": `
-        import * as Rx from "rxjs";
-        let source = Rx.Observable.of(1);
-        let published = source.publish(s => s.map(x => x.toString()));
-      `
-    }, compiler);
-    s.expect("snippet.ts").toInfer("published", "Observable<string>");
+  it("should infer the mapped type", () => {
+    expectSnippet(`
+      import * as Rx from "rxjs";
+      const source = Rx.Observable.of(1);
+      const mapped = source.map(x => x.toString());
+    `).toInfer("mapped", "Observable<string>");
   });
 });
 ```
