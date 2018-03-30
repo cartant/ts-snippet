@@ -37,7 +37,7 @@ describe("Snippet", () => {
                 `
             });
             const sourceFile = program.getSourceFile("snippet.ts");
-            const variables = getVariables(program, sourceFile);
+            const variables = getVariables(program, sourceFile!);
 
             expect(variables).to.deep.equal({
                 a: "number",
@@ -60,7 +60,7 @@ describe("Snippet", () => {
                 `
             });
             const sourceFile = program.getSourceFile("snippet.ts");
-            const variables = getVariables(program, sourceFile);
+            const variables = getVariables(program, sourceFile!);
 
             expect(variables).to.deep.equal({
                 a: "number",

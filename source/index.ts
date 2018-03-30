@@ -5,4 +5,5 @@
 
 export { Compiler } from "./compiler";
 export { Expect } from "./expect";
+export { reuseCompiler } from "./reuse";
 export { snippet, Snippet } from "./snippet";
