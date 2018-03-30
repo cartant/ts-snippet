@@ -21,7 +21,11 @@ export class Compiler {
         }
 
         const { errors, options } = ts.convertCompilerOptionsFromJson(
-            /* TS 2.0 */Object.assign({ skipLibCheck: true }, compilerOptions || {}),
+            /* TS 2.0 */Object.assign({
+                moduleResolution: "node",
+                skipLibCheck: true,
+                target: "es2017"
+            }, compilerOptions || {}),
             normalize(process.cwd())
         );
         const [error] = errors;

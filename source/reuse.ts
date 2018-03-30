@@ -9,10 +9,7 @@ import { snippet } from "./snippet";
 
 export function reuseCompiler(
     factory: (code: string) => string = code => code,
-    compilerOptions: object = {
-        moduleResolution: "node",
-        target: "es2017"
-    }
+    compilerOptions?: object
 ): (code: string) => Expect {
 
     const compiler = new Compiler(compilerOptions);
