@@ -38,7 +38,45 @@ npm install ts-snippet --save-dev
 
 ## Usage
 
-The package exports a `snippet` function that returns a `Snippet` instance, upon which assertions can be made.
+This simplest way to use `ts-snippet` is to create a snippet expectation function using `reuseCompiler`:
+
+```ts
+import { reuseCompiler } from "ts-snippet";
+
+describe("observables", () => {
+
+  const expectSnippet = reuseCompiler();
+
+  it("should infer the source's type", () => {
+    expectSnippet(`
+      import * as Rx from "rxjs";
+      const source = Rx.Observable.of(1);
+    `).toInfer("source", "Observable<number>");
+  });
+});
+```
+
+`reuseCompiler` can be passed a factory so that common imports can be specified in just one place. For example:
+
+```ts
+import { reuseCompiler } from "ts-snippet";
+
+describe("observables", () => {
+
+  const expectSnippet = reuseCompiler(code => `
+    import * as Rx from "rxjs";
+    ${code}
+  `);
+
+  it("should infer the source's type", () => {
+    expectSnippet(`
+      const source = Rx.Observable.of(1);
+    `).toInfer("source", "Observable<number>");
+  });
+});
+```
+
+Alternatively, the package exports a `snippet` function that returns a `Snippet` instance, upon which assertions can be made.
 
 The `snippet` function takes an object containing one or more files - with the keys representing the file names and the values the file content (as strings). The function also takes an optional `Compiler` instance - if not specified, a `Compiler` instance is created within the `snippet` call. With snippets that import large packages (such as RxJS) re-using the compiler can effect significant performance gains.
 
@@ -47,7 +85,7 @@ Using Mocha, the tests look something like this:
 ```ts
 import { Compiler, snippet } from "ts-snippet";
 
-describe("publish", () => {
+describe("observables", () => {
 
   let compiler: Compiler;
 
@@ -59,22 +97,21 @@ describe("publish", () => {
     const s = snippet({
       "snippet.ts": `
         import * as Rx from "rxjs";
-        let source = Rx.Observable.of(1);
-        let published = source.publish();
+        const source = Rx.Observable.of(1);
       `
     }, compiler);
-    s.expect("snippet.ts").toInfer("published", "Observable<number>");
+    s.expect("snippet.ts").toInfer("source", "Observable<number>");
   });
 
-  it("should infer the selected type", () => {
+  it("should infer the mapped type", () => {
     const s = snippet({
       "snippet.ts": `
         import * as Rx from "rxjs";
-        let source = Rx.Observable.of(1);
-        let published = source.publish(s => s.map(x => x.toString()));
+        const source = Rx.Observable.of(1);
+        const mapped = source.map(x => x.toString());
       `
     }, compiler);
-    s.expect("snippet.ts").toInfer("published", "Observable<string>");
+    s.expect("snippet.ts").toInfer("mapped", "Observable<string>");
   });
 });
 ```
@@ -94,10 +131,10 @@ tape("should infer Observable<number>", (t) => {
   const s = snippet(t, {
     "snippet.ts": `
       import * as Rx from "rxjs";
-      let ob = Rx.Observable.from([0, 1]);
+      const source = Rx.Observable.from([0, 1]);
     `
   });
-  s.infer("snippet.ts", "ob", "Observable<number>");
+  s.infer("snippet.ts", "source", "Observable<number>");
 });
 ```
 
@@ -106,6 +143,11 @@ For an example of how `ts-snippet` can be used, have a look at [these tests](htt
 ## API
 
 ```ts
+function reuseCompiler(
+  factory: (code: string) => string = code => code,
+  compilerOptions?: object
+): (code: string) => Expect;
+
 function snippet(
   files: { [fileName: string]: string },
   compiler?: Compiler
@@ -115,12 +157,14 @@ function snippet(
 ```ts
 interface Snippet {
   fail(fileName: string, expectedMessage?: RegExp): void;
-  expect(fileName: string): {
-    toFail(expectedMessage?: RegExp): void;
-    toInfer(variableName: string, expectedType: string): void;
-    toSucceed(): void;
-  };
+  expect(fileName: string): Expect;
   infer(fileName: string, variableName: string, expectedType: string): void;
   succeed(fileName: string): void;
+}
+
+interface Expect {
+  toFail(expectedMessage?: RegExp): void;
+  toInfer(variableName: string, expectedType: string): void;
+  toSucceed(): void;
 }
 ```
