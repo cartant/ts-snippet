@@ -5,10 +5,22 @@
 
 import { TestContext } from "ava";
 import { Compiler } from "../compiler";
+import { Expect } from "../expect";
 import { snippet as _snippet, Snippet } from "../snippet";
 
 export { Compiler };
-export { Expect } from "../expect";
+export { Expect };
+
+export function reuseCompiler(
+    factory: (code: string) => string = code => code,
+    compilerOptions?: object
+): (context: TestContext, code: string) => Expect {
+
+    const compiler = new Compiler(compilerOptions);
+    return (context: TestContext, code: string) => snippet(context, {
+        "snippet.ts": factory(code)
+    }, compiler).expect("snippet.ts");
+}
 
 export function snippet(
     context: TestContext,
