@@ -1,3 +1,10 @@
+<a name="2.1.0"></a>
+## [2.1.0](https://github.com/cartant/ts-snippet/compare/v2.0.1...v2.1.0) (2018-03-30)
+
+### Features
+
+* Add `reuseCompiler` to simplify use. ([90a6bce](https://github.com/cartant/ts-snippet/commit/90a6bce))
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/cartant/ts-snippet/compare/v2.0.0...v2.0.1) (2018-01-31)
 
