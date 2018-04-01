@@ -1,4 +1,4 @@
-`ts-snippet` is a TypeScript snippet compiler for any test framework. It exposes an expectaion-based API so that a snippet's compilation can be tested for failure or success and so that inferred types can be tested, too.
+`ts-snippet` is a TypeScript snippet compiler for any test framework. It exposes an expectation-based API so that a snippet's compilation can be tested for failure or success and so that inferred types can be tested, too.
 
 It can be used with [AVA](https://github.com/avajs/ava), [Jasmine](https://github.com/jasmine/jasmine), [Jest](https://facebook.github.io/jest/), [Mocha](https://github.com/mochajs/mocha) or [Tape](https://github.com/substack/tape).
 

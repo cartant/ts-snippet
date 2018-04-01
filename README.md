@@ -24,7 +24,7 @@ Without using `ts-snippet`, it's simple to write tests that establish whether or
 
 `ts-snippet` includes assertions that will verify whether inferred types are what's expected and whether compilation succeeds or fails.
 
-If you need to peform similar assertions, you might find `ts-snippet` useful.
+If you need to perform similar assertions, you might find `ts-snippet` useful.
 
 For an example of how `ts-snippet` can be used to write tests, checkout the [`research-spec.ts`](https://github.com/cartant/ts-action/blob/v2.0.2/source/research-spec.ts) file in my `ts-action` repo.
 
