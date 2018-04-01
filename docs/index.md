@@ -7,9 +7,9 @@ Using Jasmine or Mocha, the tests look something like this:
 ```ts
 import { expecter } from "ts-snippet";
 
-describe("observables", () => {
+const expectSnippet = expecter();
 
-  const expectSnippet = expecter();
+describe("observables", () => {
 
   it("should infer the source's type", () => {
     expectSnippet(`

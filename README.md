@@ -43,10 +43,9 @@ This simplest way to use `ts-snippet` is to create a snippet expectation functio
 ```ts
 import { expecter } from "ts-snippet";
 
+const expectSnippet = expecter();
+
 describe("observables", () => {
-
-  const expectSnippet = expecter();
-
   it("should infer the source's type", () => {
     expectSnippet(`
       import * as Rx from "rxjs";
@@ -61,13 +60,12 @@ describe("observables", () => {
 ```ts
 import { expecter } from "ts-snippet";
 
+const expectSnippet = expecter(code => `
+  import * as Rx from "rxjs";
+  ${code}
+`);
+
 describe("observables", () => {
-
-  const expectSnippet = expecter(code => `
-    import * as Rx from "rxjs";
-    ${code}
-  `);
-
   it("should infer the source's type", () => {
     expectSnippet(`
       const source = Rx.Observable.of(1);
