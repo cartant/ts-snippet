@@ -3017,7 +3017,7 @@ tslint@^5.5.0:
     tslib "^1.8.0"
     tsutils "^2.12.1"
 
-tsutils@^2.12.1:
+tsutils@^2.12.1, tsutils@^2.25.0:
   version "2.25.0"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.25.0.tgz#14d616ef59224a3c9fb7eb483e1c182b6665ae5e"
   dependencies:

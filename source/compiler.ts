@@ -14,20 +14,18 @@ export class Compiler {
     private _files: ts.MapLike<{ content: string, version: number }>;
     private _languageService: ts.LanguageService;
 
-    constructor(compilerOptions?: object) {
+    constructor(compilerOptions: object = {}) {
 
         function normalize(path: string): string {
             return path.replace(/\\/g, "/");
         }
 
-        const { errors, options } = ts.convertCompilerOptionsFromJson(
-            /* TS 2.0 */Object.assign({
-                moduleResolution: "node",
-                skipLibCheck: true,
-                target: "es2017"
-            }, compilerOptions || {}),
-            normalize(process.cwd())
-        );
+        const { errors, options } = ts.convertCompilerOptionsFromJson({
+            moduleResolution: "node",
+            skipLibCheck: true,
+            target: "es2017",
+            ...compilerOptions
+        }, normalize(process.cwd()));
         const [error] = errors;
         if (error) {
             throw error;

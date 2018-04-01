@@ -6,7 +6,7 @@
 import * as ts from "typescript";
 import { Compiler } from "./compiler";
 import { Expect } from "./expect";
-import * as tsutils from "./utils";
+import * as tsutils from "tsutils";
 
 export class Snippet {
 
@@ -92,11 +92,11 @@ export function getVariables(program: ts.Program, sourceFile: ts.SourceFile): { 
                 variables[node.name.getText()] = typeChecker.typeToString(typeChecker.getTypeAtLocation(node));
             });
         } else {
-            /* TS 2.0 */ts.forEachChild(node, visitNode);
+            node.forEachChild(visitNode);
         }
     };
 
-    /* TS 2.0 */ts.forEachChild(sourceFile, visitNode);
+    sourceFile.forEachChild(visitNode);
     return variables;
 }
 
