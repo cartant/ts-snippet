@@ -38,14 +38,14 @@ npm install ts-snippet --save-dev
 
 ## Usage
 
-This simplest way to use `ts-snippet` is to create a snippet expectation function using `reuseCompiler`:
+This simplest way to use `ts-snippet` is to create a snippet expectation function using `expecter`:
 
 ```ts
-import { reuseCompiler } from "ts-snippet";
+import { expecter } from "ts-snippet";
 
 describe("observables", () => {
 
-  const expectSnippet = reuseCompiler();
+  const expectSnippet = expecter();
 
   it("should infer the source's type", () => {
     expectSnippet(`
@@ -56,14 +56,14 @@ describe("observables", () => {
 });
 ```
 
-`reuseCompiler` can be passed a factory so that common imports can be specified in just one place. For example:
+`expecter` can be passed a factory so that common imports can be specified in just one place. For example:
 
 ```ts
-import { reuseCompiler } from "ts-snippet";
+import { expecter } from "ts-snippet";
 
 describe("observables", () => {
 
-  const expectSnippet = reuseCompiler(code => `
+  const expectSnippet = expecter(code => `
     import * as Rx from "rxjs";
     ${code}
   `);
@@ -143,7 +143,7 @@ For an example of how `ts-snippet` can be used, have a look at [these tests](htt
 ## API
 
 ```ts
-function reuseCompiler(
+function expecter(
   factory: (code: string) => string = code => code,
   compilerOptions?: object
 ): (code: string) => Expect;

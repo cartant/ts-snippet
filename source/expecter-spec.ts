@@ -3,13 +3,13 @@
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
 
-import { reuseCompiler } from "./reuse";
+import { expecter } from "./expecter";
 
-describe("reuseCompiler", () => {
+describe("expecter", () => {
 
     describe("default", () => {
 
-        const expectSnippet = reuseCompiler();
+        const expectSnippet = expecter();
 
         it("should support snippet expectations", () => {
 
@@ -22,7 +22,7 @@ describe("reuseCompiler", () => {
 
     describe("with factory", () => {
 
-        const expectSnippet = reuseCompiler(code => `import { expect } from "chai"; ${code}`);
+        const expectSnippet = expecter(code => `import { expect } from "chai"; ${code}`);
 
         it("should support snippet expectations", () => {
 

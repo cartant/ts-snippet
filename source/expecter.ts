@@ -7,7 +7,7 @@ import { Compiler } from "./compiler";
 import { Expect } from "./expect";
 import { snippet } from "./snippet";
 
-export function reuseCompiler(
+export function expecter(
     factory: (code: string) => string = code => code,
     compilerOptions?: object
 ): (code: string) => Expect {

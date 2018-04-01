@@ -5,11 +5,11 @@ It can be used with [AVA](https://github.com/avajs/ava), [Jasmine](https://githu
 Using Jasmine or Mocha, the tests look something like this:
 
 ```ts
-import { reuseCompiler } from "ts-snippet";
+import { expecter } from "ts-snippet";
 
 describe("observables", () => {
 
-  const expectSnippet = reuseCompiler();
+  const expectSnippet = expecter();
 
   it("should infer the source's type", () => {
     expectSnippet(`

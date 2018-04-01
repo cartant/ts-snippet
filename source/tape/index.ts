@@ -11,7 +11,7 @@ import { snippet as _snippet, Snippet } from "../snippet";
 export { Compiler };
 export { Expect };
 
-export function reuseCompiler(
+export function expecter(
     factory: (code: string) => string = code => code,
     compilerOptions?: object
 ): (context: tape.Test, code: string) => Expect {
