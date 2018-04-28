@@ -1,3 +1,10 @@
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/cartant/ts-snippet/compare/v3.1.0...v3.1.1) (2018-04-28)
+
+### Fixes
+
+* **placeholders**: Add `T0` to `placeholders.ts`, etc. ([b54ba02](https://github.com/cartant/ts-snippet/commit/b54ba02))
+
 <a name="3.1.0"></a>
 ## [3.1.0](https://github.com/cartant/ts-snippet/compare/v3.0.0...v3.1.0) (2018-04-28)
 
