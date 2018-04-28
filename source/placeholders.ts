@@ -3,6 +3,7 @@
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
 
+export interface T0 { kind: "T0"; }
 export interface T1 { kind: "T1"; }
 export interface T2 { kind: "T2"; }
 export interface T3 { kind: "T3"; }
@@ -16,6 +17,7 @@ export interface T10 { kind: "T10"; }
 export interface T11 { kind: "T11"; }
 export interface T12 { kind: "T12"; }
 
+export declare const c0: T0;
 export declare const c1: T1;
 export declare const c2: T2;
 export declare const c3: T3;
@@ -29,6 +31,7 @@ export declare const c10: T10;
 export declare const c11: T11;
 export declare const c12: T12;
 
+export declare let v0: T0;
 export declare let v1: T1;
 export declare let v2: T2;
 export declare let v3: T3;
