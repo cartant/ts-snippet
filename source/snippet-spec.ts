@@ -2,13 +2,16 @@
  * @license Use of this source code is governed by an MIT-style license that
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
-/*tslint:disable:no-unused-expression*/
+/*tslint:disable:no-invalid-this no-unused-expression*/
 
 import { expect } from "chai";
 import { Compiler } from "./compiler";
 import { areEquivalentTypeStrings, getVariables, snippet, Snippet } from "./snippet";
+import { timeout } from "./timeout-spec";
 
-describe("Snippet", () => {
+describe("Snippet", function (): void {
+
+    this.timeout(timeout);
 
     describe("areEquivalentTypeStrings", () => {
 

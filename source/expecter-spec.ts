@@ -2,10 +2,14 @@
  * @license Use of this source code is governed by an MIT-style license that
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
+/*tslint:disable:no-invalid-this no-unused-expression*/
 
 import { expecter } from "./expecter";
+import { timeout } from "./timeout-spec";
 
-describe("expecter", () => {
+describe("expecter", function (): void {
+
+    this.timeout(timeout);
 
     describe("default", () => {
 
