@@ -1,3 +1,10 @@
+<a name="3.1.0"></a>
+## [3.1.0](https://github.com/cartant/ts-snippet/compare/v3.0.0...v3.1.0) (2018-04-28)
+
+### Features
+
+* **placeholders**: Add `placeholders.ts` so that snippets can import pre-declared placeholder types, constants and variables. ([a95f9a0](https://github.com/cartant/ts-snippet/commit/a95f9a0))
+
 <a name="3.0.0"></a>
 ## [3.0.0](https://github.com/cartant/ts-snippet/compare/v2.1.0...v3.0.0) (2018-04-01)
 
