@@ -8,12 +8,14 @@ import { expecter } from "./expecter";
 
 describe("placeholders", () => {
 
-    const expectSnippet = expecter();
+    const expectSnippet = expecter(code => `
+        import * as placeholders from "./source/placeholders";
+        ${code}
+    `);
 
     it("should be importable into a snippet", () => {
 
         const expect = expectSnippet(`
-            import * as placeholders from "./source/placeholders";
             const assignedConstant = placeholders.c1;
             let assignedVariable = placeholders.v2;
             declare const declaredConstant: placeholders.T3;
@@ -23,5 +25,13 @@ describe("placeholders", () => {
         expect.toInfer("assignedVariable", "T2");
         expect.toInfer("declaredConstant", "T3");
         expect.toInfer("declaredVariable", "T4");
+    });
+
+    it("should have incompatible types", () => {
+
+        const expect = expectSnippet(`
+            let v: placeholders.T1 = placeholders.v2;
+        `);
+        expect.toFail(/type 'T2' is not assignable to type 'T1'/i);
     });
 });
