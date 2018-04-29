@@ -25,6 +25,18 @@ describe("Snippet", function (): void {
 
             expect(areEquivalentTypeStrings("Observable<number>", "Observable< number >")).to.be.true;
         });
+
+        it("should ignore leading whitespace", () => {
+
+            expect(areEquivalentTypeStrings("Observable<number>", `
+            Observable<number>`)).to.be.true;
+        });
+
+        it("should ignore trailing whitespace", () => {
+
+            expect(areEquivalentTypeStrings("Observable<number>", `Observable<number>
+            `)).to.be.true;
+        });
     });
 
     describe("getVariables", () => {
