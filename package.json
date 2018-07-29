@@ -4,7 +4,7 @@
     "url": "https://github.com/cartant/ts-snippet/issues"
   },
   "dependencies": {
-    "tsutils": "^2.25.0"
+    "tsutils": "^3.0.0"
   },
   "description": "A TypeScript snippet testing library for any test framework",
   "devDependencies": {
