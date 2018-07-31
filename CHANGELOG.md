@@ -1,3 +1,10 @@
+<a name="3.1.2"></a>
+## [3.1.2](https://github.com/cartant/ts-snippet/compare/v3.1.1...v3.1.2) (2018-07-31)
+
+### Build
+
+* Widen TypeScript peer semver to allow for version 3.0. ([c036f9e](https://github.com/cartant/ts-snippet/commit/c036f9e))
+
 <a name="3.1.1"></a>
 ## [3.1.1](https://github.com/cartant/ts-snippet/compare/v3.1.0...v3.1.1) (2018-04-28)
 
