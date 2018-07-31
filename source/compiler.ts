@@ -76,7 +76,11 @@ export class Compiler {
             this._files[fileName].content = files[fileName];
             this._files[fileName].version++;
         });
-        return this._languageService.getProgram();
+        const program = this._languageService.getProgram();
+        if (!program) {
+            throw new Error("No program.");
+        }
+        return program;
     }
 
     formatDiagnostic(diagnostic: ts.Diagnostic): string {
