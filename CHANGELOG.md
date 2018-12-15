@@ -1,3 +1,10 @@
+<a name="4.0.0"></a>
+## [4.0.0](https://github.com/cartant/ts-snippet/compare/v3.1.2...v4.0.0) (2018-12-16)
+
+### Breaking Changes
+
+* Upgrade to AVA 1.0. ([3299ee3](https://github.com/cartant/ts-snippet/commit/3299ee3))
+
 <a name="3.1.2"></a>
 ## [3.1.2](https://github.com/cartant/ts-snippet/compare/v3.1.1...v3.1.2) (2018-07-31)
 
