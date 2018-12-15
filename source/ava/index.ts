@@ -3,7 +3,7 @@
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
 
-import { TestContext } from "ava";
+import { ExecutionContext } from "ava";
 import { Compiler } from "../compiler";
 import { Expect } from "../expect";
 import { snippet as _snippet, Snippet } from "../snippet";
@@ -14,16 +14,16 @@ export { Expect };
 export function expecter(
     factory: (code: string) => string = code => code,
     compilerOptions?: object
-): (context: TestContext, code: string) => Expect {
+): (context: ExecutionContext, code: string) => Expect {
 
     const compiler = new Compiler(compilerOptions);
-    return (context: TestContext, code: string) => snippet(context, {
+    return (context: ExecutionContext, code: string) => snippet(context, {
         "snippet.ts": factory(code)
     }, compiler).expect("snippet.ts");
 }
 
 export function snippet(
-    context: TestContext,
+    context: ExecutionContext,
     files: { [fileName: string]: string },
     compiler?: Compiler
 ): Snippet {
