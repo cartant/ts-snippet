@@ -13,10 +13,11 @@ export { Expect };
 
 export function expecter(
     factory: (code: string) => string = code => code,
-    compilerOptions?: object
+    compilerOptions?: object,
+    rootDirectory?: string
 ): (context: tape.Test, code: string) => Expect {
 
-    const compiler = new Compiler(compilerOptions);
+    const compiler = new Compiler(compilerOptions, rootDirectory);
     return (context: tape.Test, code: string) => snippet(context, {
         "snippet.ts": factory(code)
     }, compiler).expect("snippet.ts");

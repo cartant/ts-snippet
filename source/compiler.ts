@@ -14,7 +14,7 @@ export class Compiler {
     private _files: ts.MapLike<{ content: string, version: number }>;
     private _languageService: ts.LanguageService;
 
-    constructor(compilerOptions: object = {}) {
+    constructor(compilerOptions: object = {}, rootDirectory: string = process.cwd()) {
 
         function normalize(path: string): string {
             return path.replace(/\\/g, "/");
@@ -25,7 +25,7 @@ export class Compiler {
             skipLibCheck: true,
             target: "es2017",
             ...compilerOptions
-        }, normalize(process.cwd()));
+        }, normalize(rootDirectory));
         const [error] = errors;
         if (error) {
             throw error;
@@ -39,7 +39,7 @@ export class Compiler {
             directoryExists: ts.sys.directoryExists,
             fileExists: ts.sys.fileExists,
             getCompilationSettings: () => this._compilerOptions,
-            getCurrentDirectory: () => normalize(process.cwd()),
+            getCurrentDirectory: () => normalize(rootDirectory),
             getDefaultLibFileName: (options: ts.CompilerOptions) => ts.getDefaultLibFilePath(options),
             getScriptFileNames: () => Object.keys(this._files),
 
