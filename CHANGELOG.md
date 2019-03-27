@@ -1,3 +1,10 @@
+<a name="4.1.0"></a>
+## [4.1.0](https://github.com/cartant/ts-snippet/compare/v4.0.0...v4.1.0) (2019-03-28)
+
+### Features
+
+* Added a `rootDirectory` option. ([b8c6411](https://github.com/cartant/ts-snippet/commit/b8c6411))
+
 <a name="4.0.0"></a>
 ## [4.0.0](https://github.com/cartant/ts-snippet/compare/v3.1.2...v4.0.0) (2018-12-16)
 
