@@ -143,7 +143,8 @@ For an example of how `ts-snippet` can be used, have a look at [these tests](htt
 ```ts
 function expecter(
   factory: (code: string) => string = code => code,
-  compilerOptions?: object
+  compilerOptions?: object,
+  rootDirectory?: string
 ): (code: string) => Expect;
 
 function snippet(
