@@ -1,3 +1,10 @@
+<a name="4.1.1"></a>
+## [4.1.1](https://github.com/cartant/ts-snippet/compare/v4.1.0...v4.1.1) (2019-04-22)
+
+### Fixes
+
+* Don't throw a TypeScript `Diagnostic` for options-related errors. ([0467d0e](https://github.com/cartant/ts-snippet/commit/0467d0e))
+
 <a name="4.1.0"></a>
 ## [4.1.0](https://github.com/cartant/ts-snippet/compare/v4.0.0...v4.1.0) (2019-03-28)
 
