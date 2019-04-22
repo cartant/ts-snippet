@@ -8,11 +8,22 @@ import { Expect } from "./expect";
 import { snippet } from "./snippet";
 
 export function expecter(
-  factory: (code: string) => string = code => code,
+  factory: (code: string) => string,
+  compiler: Compiler
+): (code: string) => Expect;
+export function expecter(
+  factory?: (code: string) => string,
   compilerOptions?: object,
   rootDirectory?: string
+): (code: string) => Expect;
+export function expecter(
+  factory: (code: string) => string = code => code,
+  compilerOrOptions?: Compiler | object,
+  rootDirectory?: string
 ): (code: string) => Expect {
-  const compiler = new Compiler(compilerOptions, rootDirectory);
+  const compiler = compilerOrOptions instanceof Compiler
+    ? compilerOrOptions
+    : new Compiler(compilerOrOptions, rootDirectory);
   return (code: string) =>
     snippet(
       {

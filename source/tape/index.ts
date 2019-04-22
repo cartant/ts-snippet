@@ -12,11 +12,22 @@ export { Compiler };
 export { Expect };
 
 export function expecter(
-  factory: (code: string) => string = code => code,
+  factory: (code: string) => string,
+  compiler: Compiler
+): (context: tape.Test, code: string) => Expect
+export function expecter(
+  factory?: (code: string) => string,
   compilerOptions?: object,
   rootDirectory?: string
+): (context: tape.Test, code: string) => Expect;
+export function expecter(
+  factory: (code: string) => string = code => code,
+  compilerOrOptions?: object,
+  rootDirectory?: string
 ): (context: tape.Test, code: string) => Expect {
-  const compiler = new Compiler(compilerOptions, rootDirectory);
+  const compiler = compilerOrOptions instanceof Compiler
+    ? compilerOrOptions
+    : new Compiler(compilerOrOptions, rootDirectory);
   return (context: tape.Test, code: string) =>
     snippet(
       context,

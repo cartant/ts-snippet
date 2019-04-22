@@ -4,6 +4,7 @@
  */
 /*tslint:disable:no-invalid-this no-unused-expression*/
 
+import { Compiler } from "./compiler";
 import { expecter } from "./expecter";
 import { timeout } from "./timeout-spec";
 
@@ -24,6 +25,20 @@ describe("expecter", function(): void {
   describe("with factory", () => {
     const expectSnippet = expecter(
       code => `import { expect } from "chai"; ${code}`
+    );
+
+    it("should support snippet expectations", () => {
+      expectSnippet(`
+        const n: number = expect;
+      `).toFail(/not assignable to type 'number'/);
+    });
+  });
+
+  describe("with compiler", () => {
+    const compiler = new Compiler();
+    const expectSnippet = expecter(
+      code => `import { expect } from "chai"; ${code}`,
+      compiler
     );
 
     it("should support snippet expectations", () => {
