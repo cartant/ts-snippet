@@ -32,7 +32,7 @@ export class Compiler {
     );
     const [error] = errors;
     if (error) {
-      throw error;
+      throw new Error(this.formatDiagnostic(error));
     }
 
     this._compilerOptions = options;
