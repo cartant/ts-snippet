@@ -3,19 +3,45 @@
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
 
-export interface T0 { kind: "T0"; }
-export interface T1 { kind: "T1"; }
-export interface T2 { kind: "T2"; }
-export interface T3 { kind: "T3"; }
-export interface T4 { kind: "T4"; }
-export interface T5 { kind: "T5"; }
-export interface T6 { kind: "T6"; }
-export interface T7 { kind: "T7"; }
-export interface T8 { kind: "T8"; }
-export interface T9 { kind: "T9"; }
-export interface T10 { kind: "T10"; }
-export interface T11 { kind: "T11"; }
-export interface T12 { kind: "T12"; }
+export interface T0 {
+  kind: "T0";
+}
+export interface T1 {
+  kind: "T1";
+}
+export interface T2 {
+  kind: "T2";
+}
+export interface T3 {
+  kind: "T3";
+}
+export interface T4 {
+  kind: "T4";
+}
+export interface T5 {
+  kind: "T5";
+}
+export interface T6 {
+  kind: "T6";
+}
+export interface T7 {
+  kind: "T7";
+}
+export interface T8 {
+  kind: "T8";
+}
+export interface T9 {
+  kind: "T9";
+}
+export interface T10 {
+  kind: "T10";
+}
+export interface T11 {
+  kind: "T11";
+}
+export interface T12 {
+  kind: "T12";
+}
 
 export declare const c0: T0;
 export declare const c1: T1;

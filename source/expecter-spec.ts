@@ -7,32 +7,29 @@
 import { expecter } from "./expecter";
 import { timeout } from "./timeout-spec";
 
-describe("expecter", function (): void {
+describe("expecter", function(): void {
+  this.timeout(timeout);
 
-    this.timeout(timeout);
+  describe("default", () => {
+    const expectSnippet = expecter();
 
-    describe("default", () => {
-
-        const expectSnippet = expecter();
-
-        it("should support snippet expectations", () => {
-
-            expectSnippet(`
-                import { expect } from "chai";
-                const n: number = expect;
-            `).toFail(/not assignable to type 'number'/);
-        });
+    it("should support snippet expectations", () => {
+      expectSnippet(`
+        import { expect } from "chai";
+        const n: number = expect;
+      `).toFail(/not assignable to type 'number'/);
     });
+  });
 
-    describe("with factory", () => {
+  describe("with factory", () => {
+    const expectSnippet = expecter(
+      code => `import { expect } from "chai"; ${code}`
+    );
 
-        const expectSnippet = expecter(code => `import { expect } from "chai"; ${code}`);
-
-        it("should support snippet expectations", () => {
-
-            expectSnippet(`
-                const n: number = expect;
-            `).toFail(/not assignable to type 'number'/);
-        });
+    it("should support snippet expectations", () => {
+      expectSnippet(`
+        const n: number = expect;
+      `).toFail(/not assignable to type 'number'/);
     });
+  });
 });

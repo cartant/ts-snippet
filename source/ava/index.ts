@@ -12,25 +12,28 @@ export { Compiler };
 export { Expect };
 
 export function expecter(
-    factory: (code: string) => string = code => code,
-    compilerOptions?: object,
-    rootDirectory?: string
+  factory: (code: string) => string = code => code,
+  compilerOptions?: object,
+  rootDirectory?: string
 ): (context: ExecutionContext, code: string) => Expect {
-
-    const compiler = new Compiler(compilerOptions, rootDirectory);
-    return (context: ExecutionContext, code: string) => snippet(context, {
+  const compiler = new Compiler(compilerOptions, rootDirectory);
+  return (context: ExecutionContext, code: string) =>
+    snippet(
+      context,
+      {
         "snippet.ts": factory(code)
-    }, compiler).expect("snippet.ts");
+      },
+      compiler
+    ).expect("snippet.ts");
 }
 
 export function snippet(
-    context: ExecutionContext,
-    files: { [fileName: string]: string },
-    compiler?: Compiler
+  context: ExecutionContext,
+  files: { [fileName: string]: string },
+  compiler?: Compiler
 ): Snippet {
-
-    const s = _snippet(files, compiler);
-    s.assertFail = (message: string) => context.fail(message);
-    s.assertPass = () => context.pass();
-    return s;
+  const s = _snippet(files, compiler);
+  s.assertFail = (message: string) => context.fail(message);
+  s.assertPass = () => context.pass();
+  return s;
 }

@@ -4,10 +4,9 @@
  */
 
 export class Expect {
-
-    constructor(
-        public toFail: (expectedMessage?: RegExp) => void,
-        public toInfer: (variableName: string, expectedType: string) => void,
-        public toSucceed: () => void
-    ) {}
+  constructor(
+    public toFail: (expectedMessage?: RegExp) => void,
+    public toInfer: (variableName: string, expectedType: string) => void,
+    public toSucceed: () => void
+  ) {}
 }

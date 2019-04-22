@@ -140,7 +140,7 @@
     },
     "radix": { "severity": "error" },
     "return-undefined": { "severity": "error" },
-    "semicolon": { "severity": "error" },
+    "semicolon": { "severity": "off" },
     "strict-boolean-expressions": { "severity": "off" },
     "switch-default": { "severity": "error" },
     "trailing-comma": {
