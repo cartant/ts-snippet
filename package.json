@@ -8,7 +8,7 @@
   },
   "description": "A TypeScript snippet testing library for any test framework",
   "devDependencies": {
-    "@cartant/tslint-config": "^1.0.2",
+    "@cartant/tslint-config": "^2.0.0",
     "@cartant/tslint-config-etc": "^1.0.1",
     "@types/chai": "^4.0.0",
     "@types/mocha": "^5.0.0",
