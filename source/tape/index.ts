@@ -14,7 +14,7 @@ export { Expect };
 export function expecter(
   factory: (code: string) => string,
   compiler: Compiler
-): (context: tape.Test, code: string) => Expect
+): (context: tape.Test, code: string) => Expect;
 export function expecter(
   factory?: (code: string) => string,
   compilerOptions?: object,
@@ -25,9 +25,10 @@ export function expecter(
   compilerOrOptions?: object,
   rootDirectory?: string
 ): (context: tape.Test, code: string) => Expect {
-  const compiler = compilerOrOptions instanceof Compiler
-    ? compilerOrOptions
-    : new Compiler(compilerOrOptions, rootDirectory);
+  const compiler =
+    compilerOrOptions instanceof Compiler
+      ? compilerOrOptions
+      : new Compiler(compilerOrOptions, rootDirectory);
   return (context: tape.Test, code: string) =>
     snippet(
       context,

@@ -25,9 +25,10 @@ export function expecter(
   compilerOrOptions?: Compiler | object,
   rootDirectory?: string
 ): (context: ExecutionContext, code: string) => Expect {
-  const compiler = compilerOrOptions instanceof Compiler
-    ? compilerOrOptions
-    : new Compiler(compilerOrOptions, rootDirectory);
+  const compiler =
+    compilerOrOptions instanceof Compiler
+      ? compilerOrOptions
+      : new Compiler(compilerOrOptions, rootDirectory);
   return (context: ExecutionContext, code: string) =>
     snippet(
       context,
