@@ -6,7 +6,7 @@
 import * as tape from "tape";
 import { Compiler } from "../compiler";
 import { Expect } from "../expect";
-import { snippet as _snippet, Snippet } from "../snippet";
+import { Snippet, snippet as _snippet } from "../snippet";
 
 export { Compiler };
 export { Expect };

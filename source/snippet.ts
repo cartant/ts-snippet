@@ -4,10 +4,10 @@
  */
 /*tslint:disable:member-ordering*/
 
+import * as tsutils from "tsutils";
 import * as ts from "typescript";
 import { Compiler } from "./compiler";
 import { Expect } from "./expect";
-import * as tsutils from "tsutils";
 
 export class Snippet {
   private _program: ts.Program;
