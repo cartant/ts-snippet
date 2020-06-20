@@ -8,7 +8,7 @@ import { Compiler } from "./compiler";
 import { expecter } from "./expecter";
 import { timeout } from "./timeout-spec";
 
-describe("expecter", function(): void {
+describe("expecter", function (): void {
   this.timeout(timeout);
 
   describe("default", () => {
@@ -24,7 +24,7 @@ describe("expecter", function(): void {
 
   describe("with factory", () => {
     const expectSnippet = expecter(
-      code => `import { expect } from "chai"; ${code}`
+      (code) => `import { expect } from "chai"; ${code}`
     );
 
     it("should support snippet expectations", () => {
@@ -37,7 +37,7 @@ describe("expecter", function(): void {
   describe("with compiler", () => {
     const compiler = new Compiler();
     const expectSnippet = expecter(
-      code => `import { expect } from "chai"; ${code}`,
+      (code) => `import { expect } from "chai"; ${code}`,
       compiler
     );
 

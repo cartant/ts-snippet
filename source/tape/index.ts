@@ -21,7 +21,7 @@ export function expecter(
   rootDirectory?: string
 ): (context: tape.Test, code: string) => Expect;
 export function expecter(
-  factory: (code: string) => string = code => code,
+  factory: (code: string) => string = (code) => code,
   compilerOrOptions?: object,
   rootDirectory?: string
 ): (context: tape.Test, code: string) => Expect {
@@ -33,7 +33,7 @@ export function expecter(
     snippet(
       context,
       {
-        "snippet.ts": factory(code)
+        "snippet.ts": factory(code),
       },
       compiler
     ).expect("snippet.ts");

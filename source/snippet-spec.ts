@@ -10,11 +10,11 @@ import {
   areEquivalentTypeStrings,
   getVariables,
   snippet,
-  Snippet
+  Snippet,
 } from "./snippet";
 import { timeout } from "./timeout-spec";
 
-describe("Snippet", function(): void {
+describe("Snippet", function (): void {
   this.timeout(timeout);
 
   describe("areEquivalentTypeStrings", () => {
@@ -58,7 +58,7 @@ describe("Snippet", function(): void {
           let a = 1;
           let b = "two";
           let c = [3];
-        `
+        `,
       });
       const sourceFile = program.getSourceFile("snippet.ts");
       const variables = getVariables(program, sourceFile!);
@@ -66,7 +66,7 @@ describe("Snippet", function(): void {
       expect(variables).to.deep.equal({
         a: "number",
         b: "string",
-        c: "number[]"
+        c: "number[]",
       });
     });
 
@@ -80,7 +80,7 @@ describe("Snippet", function(): void {
           if (true) {
             let d = "four";
           }
-        `
+        `,
       });
       const sourceFile = program.getSourceFile("snippet.ts");
       const variables = getVariables(program, sourceFile!);
@@ -89,7 +89,7 @@ describe("Snippet", function(): void {
         a: "number",
         b: "string",
         c: "number[]",
-        d: "string"
+        d: "string",
       });
     });
   });
@@ -98,7 +98,7 @@ describe("Snippet", function(): void {
     describe("fail", () => {
       it("should not throw if an error occurs", () => {
         const snip = snippet({
-          "a.ts": "let a: string = 1;"
+          "a.ts": "let a: string = 1;",
         });
 
         expect(() => snip.fail("a.ts")).to.not.throw();
@@ -106,7 +106,7 @@ describe("Snippet", function(): void {
 
       it("should not throw if a matching error occurs", () => {
         const snip = snippet({
-          "a.ts": "let a: string = 1;"
+          "a.ts": "let a: string = 1;",
         });
 
         expect(() =>
@@ -116,7 +116,7 @@ describe("Snippet", function(): void {
 
       it("should throw if a non-matching error occurs", () => {
         const snip = snippet({
-          "a.ts": "let a: string = 1;"
+          "a.ts": "let a: string = 1;",
         });
 
         expect(() =>
@@ -126,7 +126,7 @@ describe("Snippet", function(): void {
 
       it("should throw if no error occurs", () => {
         const snip = snippet({
-          "a.ts": "let a: number = 1;"
+          "a.ts": "let a: number = 1;",
         });
 
         expect(() => snip.fail("a.ts")).to.throw();
@@ -137,7 +137,7 @@ describe("Snippet", function(): void {
       describe("toFail", () => {
         it("should not throw if an error occurs", () => {
           const snip = snippet({
-            "a.ts": "let a: string = 1;"
+            "a.ts": "let a: string = 1;",
           });
 
           expect(() => snip.expect("a.ts").toFail()).to.not.throw();
@@ -145,7 +145,7 @@ describe("Snippet", function(): void {
 
         it("should not throw if a matching error occurs", () => {
           const snip = snippet({
-            "a.ts": "let a: string = 1;"
+            "a.ts": "let a: string = 1;",
           });
 
           expect(() =>
@@ -155,7 +155,7 @@ describe("Snippet", function(): void {
 
         it("should throw if a non-matching error occurs", () => {
           const snip = snippet({
-            "a.ts": "let a: string = 1;"
+            "a.ts": "let a: string = 1;",
           });
 
           expect(() =>
@@ -165,7 +165,7 @@ describe("Snippet", function(): void {
 
         it("should throw if no error occurs", () => {
           const snip = snippet({
-            "a.ts": "let a: number = 1;"
+            "a.ts": "let a: number = 1;",
           });
 
           expect(() => snip.expect("a.ts").toFail()).to.throw();
@@ -178,7 +178,7 @@ describe("Snippet", function(): void {
         beforeEach(() => {
           snip = snippet({
             "a.ts": "let a = 1;",
-            "b.ts": "let b = 2;"
+            "b.ts": "let b = 2;",
           });
         });
 
@@ -213,7 +213,7 @@ describe("Snippet", function(): void {
       describe("toSucceed", () => {
         it("should not throw if no error occurs", () => {
           const snip = snippet({
-            "a.ts": "let a: number = 1;"
+            "a.ts": "let a: number = 1;",
           });
 
           expect(() => snip.expect("a.ts").toSucceed()).to.not.throw();
@@ -221,7 +221,7 @@ describe("Snippet", function(): void {
 
         it("should throw if an error occurs", () => {
           const snip = snippet({
-            "a.ts": "let a: string = 1;"
+            "a.ts": "let a: string = 1;",
           });
 
           expect(() => snip.expect("a.ts").toSucceed()).to.throw();
@@ -235,7 +235,7 @@ describe("Snippet", function(): void {
       beforeEach(() => {
         snip = snippet({
           "a.ts": "let a = 1;",
-          "b.ts": "let b = 2;"
+          "b.ts": "let b = 2;",
         });
       });
 
@@ -266,7 +266,7 @@ describe("Snippet", function(): void {
     describe("succeed", () => {
       it("should not throw if no error occurs", () => {
         const snip = snippet({
-          "a.ts": "let a: number = 1;"
+          "a.ts": "let a: number = 1;",
         });
 
         expect(() => snip.succeed("a.ts")).to.not.throw();
@@ -274,7 +274,7 @@ describe("Snippet", function(): void {
 
       it("should throw if an error occurs", () => {
         const snip = snippet({
-          "a.ts": "let a: string = 1;"
+          "a.ts": "let a: string = 1;",
         });
 
         expect(() => snip.succeed("a.ts")).to.throw();

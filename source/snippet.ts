@@ -26,7 +26,7 @@ export class Snippet {
   fail(fileName: string, expectedMessage?: RegExp): void {
     const diagnostics = this._getDiagnostics(fileName);
     const messages = diagnostics.map(this._compiler.formatDiagnostic);
-    const matched = messages.some(message =>
+    const matched = messages.some((message) =>
       expectedMessage ? expectedMessage.test(message) : true
     );
     if (!matched) {
@@ -94,7 +94,7 @@ export function getVariables(
 
   const visitNode = (node: ts.Node) => {
     if (tsutils.isVariableStatement(node)) {
-      tsutils.forEachDeclaredVariable(node.declarationList, node => {
+      tsutils.forEachDeclaredVariable(node.declarationList, (node) => {
         variables[node.name.getText()] = typeChecker.typeToString(
           typeChecker.getTypeAtLocation(node)
         );

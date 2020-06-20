@@ -8,7 +8,7 @@ import { expecter } from "./expecter";
 
 describe("placeholders", () => {
   const expectSnippet = expecter(
-    code => `
+    (code) => `
       import * as placeholders from "./source/placeholders";
       ${code}
     `

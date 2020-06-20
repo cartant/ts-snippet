@@ -8,7 +8,7 @@ import { expect } from "chai";
 import { Compiler } from "./compiler";
 import { timeout } from "./timeout-spec";
 
-describe("Compiler", function(): void {
+describe("Compiler", function (): void {
   this.timeout(timeout);
 
   describe("compile", () => {
@@ -18,7 +18,7 @@ describe("Compiler", function(): void {
         "snippet.ts": `
           import * as Lint from "tslint";
           const pi: number = 3.14159265359;
-        `
+        `,
       });
 
       expect(program).to.be.an("object");
@@ -35,7 +35,7 @@ describe("Compiler", function(): void {
         "snippet.ts": `
           import { other } from "./other";
           console.log(other);
-        `
+        `,
       });
 
       expect(program).to.be.an("object");
@@ -52,7 +52,7 @@ describe("Compiler", function(): void {
       let program = compiler.compile({
         "snippet.ts": `
           const pi: string = 3.14159265359;
-        `
+        `,
       });
 
       expect(program).to.be.an("object");
@@ -65,7 +65,7 @@ describe("Compiler", function(): void {
       program = compiler.compile({
         "snippet.ts": `
           const pi: number = 3.14159265359;
-        `
+        `,
       });
 
       expect(program).to.be.an("object");
@@ -78,12 +78,12 @@ describe("Compiler", function(): void {
     it("should support options", () => {
       const compiler = new Compiler({
         moduleResolution: "node",
-        target: "es2015"
+        target: "es2015",
       });
       const program = compiler.compile({
         "snippet.ts": `
           const person = Object.assign({}, { name: "alice" });
-        `
+        `,
       });
 
       expect(program).to.be.an("object");

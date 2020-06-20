@@ -17,7 +17,7 @@ export function expecter(
   rootDirectory?: string
 ): (code: string) => Expect;
 export function expecter(
-  factory: (code: string) => string = code => code,
+  factory: (code: string) => string = (code) => code,
   compilerOrOptions?: Compiler | object,
   rootDirectory?: string
 ): (code: string) => Expect {
@@ -28,7 +28,7 @@ export function expecter(
   return (code: string) =>
     snippet(
       {
-        "snippet.ts": factory(code)
+        "snippet.ts": factory(code),
       },
       compiler
     ).expect("snippet.ts");

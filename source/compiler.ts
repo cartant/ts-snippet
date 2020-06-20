@@ -26,7 +26,7 @@ export class Compiler {
         moduleResolution: "node",
         skipLibCheck: true,
         target: "es2017",
-        ...compilerOptions
+        ...compilerOptions,
       },
       normalize(rootDirectory)
     );
@@ -65,7 +65,7 @@ export class Compiler {
       },
 
       readDirectory: ts.sys.readDirectory,
-      readFile: ts.sys.readFile
+      readFile: ts.sys.readFile,
     };
     this._languageService = ts.createLanguageService(
       languageServiceHost,
@@ -74,7 +74,7 @@ export class Compiler {
   }
 
   compile(files: { [fileName: string]: string }): ts.Program {
-    Object.keys(files).forEach(fileName => {
+    Object.keys(files).forEach((fileName) => {
       if (!this._files[fileName]) {
         this._files[fileName] = { content: "", version: 0 };
       }
@@ -97,8 +97,9 @@ export class Compiler {
       const { line, character } = diagnostic.file.getLineAndCharacterOfPosition(
         diagnostic.start!
       );
-      return `Error ${diagnostic.file.fileName} (${line + 1},${character +
-        1}): ${message}`;
+      return `Error ${diagnostic.file.fileName} (${line + 1},${
+        character + 1
+      }): ${message}`;
     }
     return `Error: ${message}`;
   }
