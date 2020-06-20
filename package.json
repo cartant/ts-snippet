@@ -45,10 +45,7 @@
   ],
   "license": "MIT",
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "git add"
-    ]
+    "*.{js,jsx,ts,tsx}": "prettier --write"
   },
   "main": "./dist/index.js",
   "module": "./dist/esm5/index.js",
