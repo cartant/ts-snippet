@@ -3,7 +3,7 @@
  * can be found in the LICENSE file at https://github.com/cartant/ts-snippet
  */
 
-import { Compiler } from "./compiler";
+import { Compiler, CompilerOptions } from "./compiler";
 import { Expect } from "./expect";
 import { snippet } from "./snippet";
 
@@ -13,12 +13,12 @@ export function expecter(
 ): (code: string) => Expect;
 export function expecter(
   factory?: (code: string) => string,
-  compilerOptions?: object,
+  compilerOptions?: CompilerOptions,
   rootDirectory?: string
 ): (code: string) => Expect;
 export function expecter(
   factory: (code: string) => string = (code) => code,
-  compilerOrOptions?: Compiler | object,
+  compilerOrOptions?: Compiler | CompilerOptions,
   rootDirectory?: string
 ): (code: string) => Expect {
   const compiler =

@@ -8,13 +8,24 @@ import * as ts from "typescript";
 // There is an example that uses the LanguageService here:
 // https://github.com/Microsoft/TypeScript/wiki/Using-the-Compiler-API#incremental-build-support-using-the-language-services
 
+// prettier-ignore
+export type CompilerOptions = {
+  [K in keyof ts.CompilerOptions]: ts.CompilerOptions[K] | (
+    K extends 'moduleResolution' ? 'node'|'classic' :
+    K extends 'target' ? keyof typeof ts.ScriptTarget | (
+      'es3'|'es5'|'es6'|'es2015'|'es2016'|'es2017'|'es2018'|'es2019'|'es2020'|'esnext'
+    ) :
+    void
+  )
+}
+
 export class Compiler {
   private _compilerOptions: ts.CompilerOptions;
   private _files: ts.MapLike<{ content: string; version: number }>;
   private _languageService: ts.LanguageService;
 
   constructor(
-    compilerOptions: object = {},
+    compilerOptions: CompilerOptions = {},
     rootDirectory: string = process.cwd()
   ) {
     function normalize(path: string): string {
