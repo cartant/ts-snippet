@@ -114,9 +114,11 @@ describe("observables", () => {
 });
 ```
 
-Compiler can be passed TypeScript configuration and root directory for relative path module resolution (defaults to `process.cwd()`).
+Compiler can be passed the TypeScript `compilerOptions` JSON configuration and root directory for relative path module resolution (defaults to `process.cwd()`).
 ```ts
-new Compiler({ strictNullChecks: true }, __dirname); // Now module paths will be relative to the directory where the test file is located.
+new Compiler({
+  strictNullChecks: true
+}, __dirname); // Now module paths will be relative to the directory where the test file is located.
 ```
 
 If the BDD-style expectations are not to your liking, there are alternate methods that are more terse.
