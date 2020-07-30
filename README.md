@@ -114,6 +114,11 @@ describe("observables", () => {
 });
 ```
 
+Compiler can be passed TypeScript configuration and root directory for relative path module resolution (defaults to `process.cwd()`).
+```ts
+new Compiler({ strictNullChecks: true }, __dirname); // Now module paths will be relative to the directory where the test file is located.
+```
+
 If the BDD-style expectations are not to your liking, there are alternate methods that are more terse.
 
 When using `ts-snippet` with AVA or tape, the import should specify the specific subdirectory so that the appropriate assertions are configured and the assertions count towards the test runner's plan.
