@@ -208,6 +208,17 @@ describe("Snippet", function (): void {
             snip.expect("b.ts").toInfer("b", "number")
           ).to.not.throw();
         });
+
+        it("should throw if an error occurs", () => {
+          const snipWithError = snippet({
+            "a.ts": "let a: string = 1;",
+            "b.ts": "let b = 2;",
+          });
+
+          expect(() =>
+            snipWithError.expect("b.ts").toInfer("b", "number")
+          ).to.throw();
+        });
       });
 
       describe("toSucceed", () => {
