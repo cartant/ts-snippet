@@ -1,3 +1,10 @@
+<a name="5.0.0"></a>
+## [5.0.0](https://github.com/cartant/ts-snippet/compare/v4.3.0...v5.0.0) (2020-10-28)
+
+### Breaking Changes
+
+* `infer`/`toInfer` implies `succeed`/`toSucceed` and will throw if there are compilation errors. ([54e0819](https://github.com/cartant/ts-snippet/commit/54e0819))
+
 <a name="4.3.0"></a>
 ## [4.3.0](https://github.com/cartant/ts-snippet/compare/v4.2.0...v4.3.0) (2020-08-28)
 
