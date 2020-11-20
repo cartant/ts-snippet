@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "downlevelIteration": true,
     "lib": ["es2015"],
     "module": "commonjs",
     "moduleResolution": "node",
@@ -12,7 +13,5 @@
     "target": "es5"
   },
   "exclude": [],
-  "include": [
-    "source/**/*.ts"
-  ]
+  "include": ["source/**/*.ts"]
 }

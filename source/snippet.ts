@@ -23,6 +23,14 @@ export class Snippet {
     this._program = _compiler.compile(_files);
   }
 
+  expect(fileName: string): Expect {
+    return new Expect(
+      this.fail.bind(this, fileName),
+      this.infer.bind(this, fileName),
+      this.succeed.bind(this, fileName)
+    );
+  }
+
   fail(fileName: string, expectedMessage?: RegExp): void {
     const diagnostics = this._getDiagnostics(fileName);
     const messages = diagnostics.map(this._compiler.formatDiagnostic);
@@ -32,20 +40,15 @@ export class Snippet {
     if (!matched) {
       this.assertFail(
         expectedMessage
-          ? `Expected an error matching ${expectedMessage}`
+          ? `Expected an error matching:
+${expectedMessage}
+but received:
+${[...new Set(messages)].join("\n")}`
           : "Expected an error"
       );
     } else {
       this.assertPass();
     }
-  }
-
-  expect(fileName: string): Expect {
-    return new Expect(
-      this.fail.bind(this, fileName),
-      this.infer.bind(this, fileName),
-      this.succeed.bind(this, fileName)
-    );
   }
 
   infer(fileName: string, variableName: string, expectedType: string): void {
