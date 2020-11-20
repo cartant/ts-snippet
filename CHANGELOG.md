@@ -1,3 +1,10 @@
+<a name="5.0.1"></a>
+## [5.0.1](https://github.com/cartant/ts-snippet/compare/v5.0.0...v5.0.1) (2020-11-21)
+
+### Changes
+
+* Include the actual error(s) when a failure expectation's regular expression does not match. ([55778a5](https://github.com/cartant/ts-snippet/commit/55778a5))
+
 <a name="5.0.0"></a>
 ## [5.0.0](https://github.com/cartant/ts-snippet/compare/v4.3.0...v5.0.0) (2020-10-28)
 
