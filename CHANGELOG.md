@@ -1,3 +1,10 @@
+<a name="5.0.2"></a>
+## [5.0.2](https://github.com/cartant/ts-snippet/compare/v5.0.1...v5.0.2) (2020-12-03)
+
+### Changes
+
+* Indicate the absence of errors for failure expectations. ([70754b3](https://github.com/cartant/ts-snippet/commit/70754b3))
+
 <a name="5.0.1"></a>
 ## [5.0.1](https://github.com/cartant/ts-snippet/compare/v5.0.0...v5.0.1) (2020-11-21)
 
