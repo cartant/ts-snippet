@@ -38,12 +38,14 @@ export class Snippet {
       expectedMessage ? expectedMessage.test(message) : true
     );
     if (!matched) {
+      const receivedMessages = new Set(messages);
+
       this.assertFail(
-        expectedMessage
+        expectedMessage && receivedMessages.size > 0
           ? `Expected an error matching:
 ${expectedMessage}
 but received:
-${[...new Set(messages)].join("\n")}`
+${[...receivedMessages].join("\n")}`
           : "Expected an error"
       );
     } else {
