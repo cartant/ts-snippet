@@ -17,7 +17,7 @@
     "ava": "^2.0.0",
     "chai": "^4.0.0",
     "cpy-cli": "^3.0.0",
-    "husky": "^4.0.0",
+    "husky": "^6.0.0",
     "lint-staged": "^11.0.0",
     "mkdirp": "^1.0.0",
     "mocha": "^8.0.0",
@@ -32,11 +32,6 @@
   },
   "es2015": "./dist/esm2015/index.js",
   "homepage": "https://github.com/cartant/ts-snippet",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "keywords": [
     "snippet",
     "test",
@@ -66,6 +61,7 @@
     "dist:build:es5": "tsc -p tsconfig-dist-es5.json",
     "dist:clean": "rimraf dist",
     "dist:copy": "node scripts/pack.js && cpy CHANGELOG.md LICENSE README.md dist/",
+    "prepare": "husky install",
     "prettier": "prettier --write \"./source/**/*.{js,json,ts}\"",
     "prettier:ci": "prettier --check \"./source/**/*.{js,json,ts}\"",
     "lint": "tslint --project tsconfig.json source/**/*.ts",
